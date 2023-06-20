@@ -1,216 +1,94 @@
-#include<iostream>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <random>
+#include <locale>
+
 using namespace std;
 
-int main()
-{
-    int numberOfPort;
-    string protocol1="File Transfer Protocol - Data";
-    string protocol2="File Transfer Protocol - Control";
-    string protocol3="SSH - Secure Shell";
-    string protocol4="Telnet";
-    string protocol5="SMTP - Simple Mail Transfer Protocol";
-    string protocol6="DNS - Domain Name System";
-    string protocol7="DHCP - Dynamic Host Control Protocol - Server";
-    string protocol8="DHCP - Dynamic Host Control Protocol - Client";
-    string protocol9="TFTP - Trivial File Transfer Protocol";
-    string protocol10="HTTP - HyperText Transfer Protocol";
-    string protocol11="POP3 - Post Office Protocol 3";
-    string protocol12="IMAP - Internet Message Access Protocol";
-    string protocol13="SNMP - Simple Network Management Protocol";
-    string protocol14="HTTPS - HyperText Transfer Protocol Secure";
+struct Question {
+    string protocol;
+    int port;
+    string tcpOrUdp;
+};
 
-    string TCPorUDP;
-    int pointCounter=0;
+// Function to read questions from a file
+vector<Question> readQuestionsFromFile() {
+    string filePath = "/Users/hana/Desktop/uni/CiscoAcademy/questions.txt";  // Update the file path accordingly
+    ifstream inputFile(filePath);
+    vector<Question> questions;
 
-    cout<<"Note: if the protocol uses both TCP and UDP, just type in \"both\""<<endl;
+    if (inputFile.is_open()) {
+        string line;
+        while (getline(inputFile, line)) {
+            Question question;
+            question.protocol = line;
+            inputFile >> question.port >> question.tcpOrUdp;
+            inputFile.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore remaining characters in the line
+            questions.push_back(question);
+        }
 
-    cout<<protocol1<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==20) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<" It's 20."<<endl;
+        inputFile.close();
+    } else {
+        cout << "Failed to open the file: questions.txt" << endl;
     }
 
-    cout<<protocol2<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
+    return questions;
+}
 
-    if ((numberOfPort==21) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
+// Function to randomize the order of questions
+void randomizeQuestions(vector<Question>& questions) {
+    random_device rd;
+    mt19937 generator(rd());
+    shuffle(questions.begin(), questions.end(), generator);
+}
 
-    cout<<protocol3<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==22) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
+// Function to convert a string to lowercase
+string toLowercase(const string& str) {
+    string result;
+    locale loc;
+    for (char c : str) {
+        result += tolower(c, loc);
     }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
+    return result;
+}
 
-    cout<<protocol4<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
+int main() {
+    vector<Question> questions = readQuestionsFromFile();
+    randomizeQuestions(questions);
 
-    if ((numberOfPort==23) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
+    int pointCounter = 0;
 
-    cout<<protocol5<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
+    cout << "Note: if the protocol uses both TCP and UDP, just type in \"both\"" << endl;
 
-    if ((numberOfPort==25) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
+    for (const auto& question : questions) {
+        cout << question.protocol << endl;
+        int numberOfPort;
+        string tcpOrUdp;
+
+        cin >> numberOfPort;
+        cout << "TCP or UDP?" << endl;
+        cin >> tcpOrUdp;
+
+        // Convert user input to lowercase for case-insensitive comparison
+        string tcpOrUdpLower = toLowercase(tcpOrUdp);
+        string questionTcpOrUdpLower = toLowercase(question.tcpOrUdp);
+
+        if (numberOfPort == question.port && (tcpOrUdpLower == questionTcpOrUdpLower || tcpOrUdpLower == "both")) {
+            cout << "That is correct!" << endl;
+            pointCounter++;
+        } else {
+            cout << "Incorrect." << endl;
+        }
     }
 
-    cout<<protocol6<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
+    cout << "You got " << pointCounter << " points on this test!" << endl;
 
-    if ((numberOfPort==53) && (TCPorUDP=="both")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
-
-    cout<<protocol7<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==67) && (TCPorUDP=="UDP" || TCPorUDP=="udp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
-
-    cout<<protocol8<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==68) && (TCPorUDP=="UDP" || TCPorUDP=="udp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
-
-    cout<<protocol9<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==69) && (TCPorUDP=="UDP" || TCPorUDP=="udp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
-
-    cout<<protocol10<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==80) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
-
-    cout<<protocol11<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==110) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
-
-    cout<<protocol12<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==143) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
-
-    cout<<protocol13<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==161) && (TCPorUDP=="UDP" || TCPorUDP=="udp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
-
-    cout<<protocol14<<endl;
-    cin>>numberOfPort;
-    cout<<"TCP or UDP?"<<endl;
-    cin>>TCPorUDP;
-
-    if ((numberOfPort==443) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
-        cout<<"That is correct!"<<endl;
-        pointCounter++;
-    }
-    else{
-        cout<<"Incorrect."<<endl;
-    }
-
-/*ideas for improvement:
-function that outputs a random protocol
-function that tests
-*/
-
-    cout<<"You got "<<pointCounter<<" points on this test!";
     return 0;
 }
+
+/*
+ made by ChatGPT
+ */
