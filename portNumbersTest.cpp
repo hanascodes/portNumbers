@@ -31,7 +31,7 @@ int main()
 
     if ((numberOfPort==20) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<" It's 20."<<endl;
@@ -44,7 +44,7 @@ int main()
 
     if ((numberOfPort==21) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -57,7 +57,7 @@ int main()
 
     if ((numberOfPort==22) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -70,7 +70,7 @@ int main()
 
     if ((numberOfPort==23) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -83,7 +83,7 @@ int main()
 
     if ((numberOfPort==25) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -96,7 +96,7 @@ int main()
 
     if ((numberOfPort==53) && (TCPorUDP=="both")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -109,7 +109,7 @@ int main()
 
     if ((numberOfPort==67) && (TCPorUDP=="UDP" || TCPorUDP=="udp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -122,7 +122,7 @@ int main()
 
     if ((numberOfPort==68) && (TCPorUDP=="UDP" || TCPorUDP=="udp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -135,7 +135,7 @@ int main()
 
     if ((numberOfPort==69) && (TCPorUDP=="UDP" || TCPorUDP=="udp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -148,7 +148,7 @@ int main()
 
     if ((numberOfPort==80) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -161,7 +161,7 @@ int main()
 
     if ((numberOfPort==110) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -174,7 +174,7 @@ int main()
 
     if ((numberOfPort==143) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -187,7 +187,7 @@ int main()
 
     if ((numberOfPort==161) && (TCPorUDP=="UDP" || TCPorUDP=="udp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
@@ -200,7 +200,7 @@ int main()
 
     if ((numberOfPort==443) && (TCPorUDP=="TCP" || TCPorUDP=="tcp")){
         cout<<"That is correct!"<<endl;
-        pointCounter+=1;
+        pointCounter++;
     }
     else{
         cout<<"Incorrect."<<endl;
